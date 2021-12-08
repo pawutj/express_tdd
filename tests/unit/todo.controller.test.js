@@ -23,14 +23,14 @@ describe("TodoController.createTodo", () => {
     expect(TodoModel.create).toBeCalledWith(newTodo);
   });
 
-  it("should return 201", () => {
-    TodoController.createTodo(req, res, next);
+  it("should return 201", async () => {
+    await TodoController.createTodo(req, res, next);
     expect(res.statusCode).toBe(201);
   });
 
-  it("should return jsonbody", () => {
+  it("should return jsonbody", async () => {
     TodoModel.create.mockReturnValue(newTodo);
-    TodoController.createTodo(req, res, next);
+    await TodoController.createTodo(req, res, next);
     expect(res._getJSONData()).toStrictEqual(newTodo);
   });
 });
