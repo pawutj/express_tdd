@@ -1,0 +1,11 @@
+{
+  "name": "express_tdd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pawutj/express_tdd.git",
+  "author": "astralaria <pawut.j@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
