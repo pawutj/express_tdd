@@ -5,6 +5,7 @@ const newTodo = require("../mockdata/new-todo.json");
 const allTodos = require("../mockdata/all-todos.json");
 TodoModel.create = jest.fn();
 TodoModel.find = jest.fn();
+TodoModel.findById = jest.fn();
 let req, res, next;
 beforeEach(() => {
   req = httpMocks.createRequest();
@@ -52,5 +53,19 @@ describe("Todo Controller.getTodos", () => {
     TodoModel.find.mockReturnValue(allTodos);
     await TodoController.getTodos(req, res, next);
     expect(res._getJSONData()).toStrictEqual(allTodos);
+  });
+});
+
+describe("Todo Controller.getTodoById", () => {
+  it("should have get function", () => {
+    expect(typeof TodoController.getTodoById).toBe("function");
+  });
+
+  it("should return todo", async () => {
+    TodoModel.findById.mockReturnValue(newTodo);
+    await TodoController.getTodoById(req, res, next);
+    expect(res.statusCode).toBe(200);
+    expect(res._getJSONData()).toStrictEqual(newTodo);
+    console.log(res._getJSONData());
   });
 });
